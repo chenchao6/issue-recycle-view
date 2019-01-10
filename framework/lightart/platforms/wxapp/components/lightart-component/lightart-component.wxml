@@ -1,0 +1,36 @@
+<view class="{{node.classNames}}{{node.isRoot?' la-root':''}}{{exposure.className}}" style="{{node.styles}};{{node.sizeStyles}};"
+      bindtap="onTap"
+      data-no-track="{{true}}"
+      data-id="{{exposure.id}}"
+      data-expose-row="{{lightartRow}}"
+      data-expose-col="{{exposure.col}}"
+      data-expose-data="{{exposure.data}}"
+>
+    <text class="la-ms-label-wrap" wx:if="{{node.dt === 'label' && node._isCountdownLabel}}">
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-0" style="{{node.textStyles}}">0</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-1" style="{{node.textStyles}}">9</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-2" style="{{node.textStyles}}">8</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-3" style="{{node.textStyles}}">7</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-4" style="{{node.textStyles}}">6</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-5" style="{{node.textStyles}}">5</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-6" style="{{node.textStyles}}">4</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-7" style="{{node.textStyles}}">3</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-8" style="{{node.textStyles}}">2</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-9" style="{{node.textStyles}}">1</text>
+        <text class="la-ms-label-text la-s-jcc la-s-alc la-ms-label-10" style="{{node.textStyles}}">0</text>
+    </text>
+
+    <text class="la-label-el" style="{{node.textStyles}}" wx:if="{{node.dt === 'label'}}">{{node.text}}</text>
+    <image class="la-image-el" src="{{node.url}}" style="{{node.styles}}" mode="{{node.mode}}" wx:if="{{node.dt === 'image'}}" lazy-load></image>
+    <lightart-component
+        class="la-child"
+        wx:for="{{node.children}}"
+        wx:key="id"
+        lightart-id="{{lightartId}}"
+        lightartRow="{{lightartRow}}"
+        node="{{item}}"
+        style="{{item.sizeStyles}};{{item.posStyles}};{{item.componentSizeStyles}}"
+    ></lightart-component>
+</view>
+<native-component wx:if="{{node.dt=='native'}}" lightart-id="{{lightartId}}" life-hook-type="{{lifeHookType}}" lightart-row="{{lightartRow}}" node="{{node}}"></native-component>
+

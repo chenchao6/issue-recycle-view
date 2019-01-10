@@ -1,0 +1,113 @@
+<form bindsubmit="handleSubmitInfo" report-submit='true' wx:if="{{isInitPage}}">
+    <button form-type="submit"  class="{{isIphoneX ? 'fix-iphonex' : ''}} clear-button-ss">
+       <view class="p-index" wx:if="{{!error_show}}">
+        <view id="header" class="m-header" animation="{{animation.orderby}}">
+            <!-- 搜索分类 -->
+            <view class="u-search-classify">
+                <view
+                    class="u-search hide-category"
+                    bindtap="gotoSearchSuggest"
+                    data-track-id="index_click_search"
+                >
+                    <icon type="search" size="{{13 * icon_tips}}"></icon>
+                    <text>{{searchWord && searchWord.show_word || dftSearchTips}}</text>
+                        <!-- <search-bypic></search-bypic> -->
+                </view>
+            </view>
+
+            <view class="u-channel-list-wrapper">
+                <!-- 频道列表 -->
+                <block wx:if="{{allChannelList && allChannelList.length}}">
+                    <scroll-view scroll-x="true" class="u-navigate-bar" scroll-left="{{channelScrollX}}" style="width: {{win_width}}px;">
+                        <view class="u-navigate-list">
+                            <block wx:if="{{actChannel.name}}">
+                                <view
+                                    class="u-navigate-item"
+                                    bindtap="handleChannelClick"
+                                    data-act-channel="1"
+                                    data-track-id="index_click_channel"
+                                    data-track-data="{{ actChannel._trackDataSet }}"
+                                    data-track-ext="{{ actChannel._trackExtSet }}"
+                                >
+                                    <block wx:if="{{actChannel.img}}">
+                                        <image src="{{actChannel.img}}" mode="widthFix" class="u-act-img"/>
+                                    </block>
+                                    <block wx:else>
+                                        <view class="u-navigate-title">{{actChannel.name}}</view>
+                                    </block>
+                                </view>
+                            </block>
+                            <block wx:for="{{allChannelList}}" wx:for-item="item" wx:key="id" wx:for-index="idx">
+                                <view
+                                    class="u-navigate-item"
+                                    bindtap="handleChannelClick"
+                                    data-type="0"
+                                    data-channel-index="{{idx}}"
+                                    data-track-id="index_click_channel"
+                                    data-track-data="{{ item._trackDataSet }}"
+                                    data-track-ext="{{ item._trackExtSet }}"
+                                >
+                                    <view class="u-navigate-title {{selectedChannelIndex === idx ? 'u-navigate-selected' : ''}}">{{item.name}}
+                                        <view class="{{selectedChannelIndex === idx ? 'u-navigate-border-selected' : ''}}"></view>
+                                    </view>
+                                </view>
+                            </block>
+                        </view>
+                    </scroll-view>
+                    <!-- 蒙层 -->
+                    <view class="u-navigate-layer"></view>
+                </block>
+
+                <!-- 频道列表-展开 -->
+                <view class="u-navigate-list-expand" style="{{showAllChannels ? '' : 'display: none;'}}" >
+                    <view class="title">精选推荐</view>
+                    <scroll-view scroll-y="true" class="u-navigate-list-expanded" animation="{{channelListAnim}}" style="max-height:{{expandMenuOutHeight}}rpx;">
+                        <view style="min-height: {{expandMenuOutHeight+1}}rpx;">
+                            <template is="allChannelListTmpl" data="{{allChannelList, type: 'vertical', selectedIndex: selectedChannelIndex}}"/>
+                            <view class="title" wx:if="{{hasRowMenu}}">更多推荐</view>
+                            <block wx:if="{{hasRowMenu}}">
+                                <template is="allChannelListTmpl" data="{{allChannelList, type: 'row', selectedIndex: selectedChannelIndex}}"/>
+                            </block>
+                        </view>
+                    </scroll-view>
+                </view>
+                <!-- 展开按钮 -->
+                <view wx:if="{{allChannelList && allChannelList.length || showAllChannels}}" class="btn-show-expand {{showAllChannels ? 'hide' : ''}}" data-track-id="{{showAllChannels ? 'index_handleHideAllChannels' : 'index_handleShowAllChannels'}}" catchtap="{{showAllChannels ? 'handleHideAllChannels' : 'handleShowAllChannels'}}"></view>
+            </view>
+        </view>
+
+        <view class="u-navigate-list-expand-wrapper"  wx:if="{{showAllChannels}}"
+            catchtap="handleHideAllChannels" data-track-id="index_handleHideAllChannels" catchtouchmove="handleEmptyEvent"></view>
+            <swiper class="u-brand-list" style="height: {{win_height}}px;" bindchange="handleSwiperChange" current="{{selectedChannelIndexForSwiper}}">
+                <swiper-item wx:for="{{allChannelList}}" wx:for-item="channelItem" wx:for-index="idx" wx:key="id">
+                    <!--<scroll-view scroll-y="true" class="u-brand-list-scroll {{selectedChannelIndex === idx ? 'expose-content': ''}}"-->
+                        <!--scroll-into-view="{{childViewId[channelItem.channel_code]}}" bindscrolltolower="handleScrollLoad"-->
+                        <!--lower-threshold="1500" bindscroll="handleScroll">-->
+                    <view class="u-brand-list-scroll {{selectedChannelIndex === idx ? 'expose-content': ''}}">
+                        <view class="u-brand-list-placeholder" id="scroll_top_{{channelItem.channel_code}}"></view>
+                        <lightart-root life-hook-type="{{lifeHookType}}" wx:if="{{activeChannelIdMap[channelItem.channel_code]}}" lightart-id="{{lightartIds[channelItem.channel_code]}}"></lightart-root>
+                    </view>
+                    <!--</scroll-view>-->
+                </swiper-item>
+            </swiper>
+        </view>  
+    </button>
+</form>
+
+<template name="allChannelListTmpl">
+    <view class="u-navigate-drawmenu clearfix">
+        <block wx:for="{{allChannelList}}" wx:for-item="item" wx:key="id" wx:for-index="idx">
+            <view wx:if="{{item.style && item.style === type}}"
+                class="u-navigate-drawmenuitem"  bindtap="handleChannelClick"
+                data-type="1"
+                data-channel-index="{{idx}}"
+                data-track-id="index_click_channel"
+                data-track-data="{{ item._trackDataSet }}"
+                data-track-ext="{{ item._trackExtSet }}"
+            >
+                <view class="item-title {{selectedIndex === (idx) ? 'selected' : ''}}">{{item.name}}</view>
+            </view>
+        </block>
+    </view>
+</template>
+

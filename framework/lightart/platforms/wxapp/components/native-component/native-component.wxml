@@ -1,0 +1,165 @@
+<!-- 运营位-->
+<block wx:if="{{section === 'operate' || section === 'advertisement' || section === 'slider'}}">
+    <block wx:if="{{item.backgroundCol || item.backgroundPic}}">
+        <view class="u-operation-item"
+        style="{{item.backgroundCol ? 'background-color:' + item.backgroundCol + ';' : ''}}{{item.backgroundPic ? 'background-image:url(' + item.backgroundPic + ');' : ''}}">
+            <template is="operateTmpl" data="{{ item, block, section, lightartRow, exposure, channelId, operationCountdown, currentSwiperIndex }}" />
+        </view>
+    </block>
+    <block wx:else>
+        <template is="operateTmpl" data="{{ item, block, section, lightartRow, exposure, channelId, operationCountdown, currentSwiperIndex }}" />
+    </block>
+</block>
+<!-- 档期 -->
+<view class="u-operation-brand expose-item" wx:if="{{section === 'brand'}}"
+    data-expose-row="{{lightartRow}}"
+    data-expose-col="{{exposure.col}}"
+    data-expose-data="{{exposure.data}}"
+    data-id="{{exposure.id}}"
+    data-track-id="index_click_brand"
+    data-track-data="{{ item._trackDataSet }}"
+    bindtap="brandGo"
+    >
+    <view class="u-operation-i">
+        <view class="u-operation-img-bg">
+            <image lazy-load class="u-operation-brand__image" src="{{item.brand_image}}"></image>
+        </view>
+        <view class="u-brand-msg">
+            <view class="u-brand-name">
+                <text>{{item.title}}</text>
+            </view>
+            <view class="u-brand-time">
+                {{item.remain_days}}
+            </view>
+            <view class="u-brand-pms">
+                <text class="t-discount {{item.discount ? '': 't-discount-no'}}">{{item.discount ? item.discount : '一口价'}}</text>
+                <text class="t-pms" wx:if="{{item.pms_text}}">{{item.pms_text}}</text>
+            </view>
+        </view>
+    </view>
+    <block wx:if="item.corner_mark.length">
+        <image lazy-load class="u-brand-corner-image {{corner.type == 'activity' ? 'b-activity' : ''}}"
+            wx:for="{{item.corner_mark}}"
+            wx:for-item="corner"
+            wx:key="id"
+            src="{{corner.url}}"></image>
+    </block>
+</view>
+<!-- 专题 -->
+<view class="u-operation-mst expose-item" wx:if="{{section === 'mst'}}"
+    data-id="{{exposure.id}}"
+    data-expose-row="{{lightartRow}}"
+    data-expose-col="{{exposure.col}}"
+    data-expose-data="{{exposure.data}}"
+    data-track-id="index_click_brand"
+    data-track-data="{{ item._trackDataSet }}"
+    bindtap="brandGo"
+>
+    <view class="u-operation-img-bg">
+        <image lazy-load class="u-operation-brand__image" src="{{item.image}}"></image>
+    </view>
+</view>
+
+<!-- 运营位模板 -->
+<template name="operateTmpl">
+    <!-- 普通运营位 -->
+    <view class="u-operation-block" style="{{block.height ? 'height:' + block.height + ';' : ''}}{{block.width ? 'width:' + block.width + ';' : ''}}"
+        wx:for="{{item.block}}" wx:for-item="block" wx:for-index="blockIndex" wx:key="index" wx:if="{{section === 'operate'}}">
+        <view class="u-operation-inner expose-item" bindtap="tapGo" style="{{child.height ? 'height:' + child.height + ';' : ''}}{{child.width ? 'width:' + child.width + ';' : ''}}"
+            wx:for="{{block.child}}" wx:key="index" wx:for-index="childIndex" wx:for-item="child"
+            data-block-index="{{blockIndex}}" data-child-index="{{childIndex}}" data-type="operate"
+            data-track-id="index_click_operation" data-track-data="{{ child._trackDataSet }}" data-id="{{channelId}}"
+            data-expose-data="{{ child._exposeDataSet }}" data-expose-row="{{lightartRow}}" data-expose-col="{{ (blockIndex + 1) * 10 + (childIndex + 1) }}">
+            <jump-other-mini jumper="{{child.data.jumper}}">
+                <image lazy-load style="width:{{block.width || child.width}}; height:{{block.height || child.height}};"
+                    class="u-operation-image" src="{{child.data.imageUrl}}"></image>
+                <view class="u-coupon-status {{child.data.couponStatusClass}}"></view>
+                <view class="u-countdown u-countdown-style{{child.timer.style}} u-countdown-col{{child.timer.col}} u-countdown-row{{child.timer.row}} {{operationCountdown[child.countdownId].countdownIng}}"
+                    wx:if="{{child.countdownId && operationCountdown[child.countdownId]}}">
+                    <view class="u-countdown-inner">
+                        <block wx:if="{{child.timer.style === 'NORMAL' || child.timer.style === 'TRANSLUCENT'}}">
+                            <text class="u-normal-number">{{operationCountdown[child.countdownId].hour}}</text>
+                            <text class="u-normal-text">:</text>
+                            <text class="u-normal-number">{{operationCountdown[child.countdownId].min}}</text>
+                            <text class="u-normal-text">:</text>
+                            <text class="u-normal-number">{{operationCountdown[child.countdownId].sec}}</text>
+                        </block>
+                        <block wx:if="{{child.timer.style === 'WHITE' || child.timer.style === 'BLACK'}}">
+                            <text class="u-number">{{operationCountdown[child.countdownId].day1}}</text>
+                            <text class="u-number">{{operationCountdown[child.countdownId].day2}}</text>
+                            <text class="u-text">天</text>
+                        </block>
+                        <block wx:if="{{child.timer.style === 'WHITE' || child.timer.style === 'BLACK' || child.timer.style === 'WHITE_HOUR' || child.timer.style === 'BLACK_HOUR'}}">
+                            <text class="u-number">{{operationCountdown[child.countdownId].hour1}}</text>
+                            <text class="u-number">{{operationCountdown[child.countdownId].hour2}}</text>
+                            <text class="u-text">时</text>
+                            <text class="u-number">{{operationCountdown[child.countdownId].min1}}</text>
+                            <text class="u-number">{{operationCountdown[child.countdownId].min2}}</text>
+                            <text class="u-text">分</text>
+                            <text class="u-number">{{operationCountdown[child.countdownId].sec1}}</text>
+                            <text class="u-number">{{operationCountdown[child.countdownId].sec2}}</text>
+                            <text class="u-text">秒</text>
+                            <view class="u-ms">
+                                <view>
+                                    <text wx:for="{{[0,9,8,7,6,5,4,3,2,1,0]}}" wx:for-item="num" wx:key="*num">{{num}}</text>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+            </jump-other-mini>
+        </view>
+    </view>
+    <!-- 轮播广告位 -->
+    <view class="u-operation-swiper" wx:if="{{section === 'advertisement'}}" style="height: {{item.swiperHeight}}rpx">
+        <view wx:if="{{item.item.length > 0}}" class="u-swiper-expose-placeholder expose-item"
+            data-id="{{channelId}}"
+            data-expose-data="{{ item.item[currentSwiperIndex]._exposeDataSet }}"
+            data-expose-row="{{lightartRow}}"
+            data-expose-col="{{ currentSwiperIndex + 1 }}">
+        </view>
+        <swiper indicator-dots="{{item.item.length > 1 ? true : false}}" autoplay="{{item.item.length > 1 ? true : false}}"
+            circular="true" interval="5000" duration="500" bindanimationfinish="operationChange" class="u-swiper"
+            style="height: {{item.swiperHeight}}rpx" indicator-active-color="#fff">
+            <swiper-item wx:for="{{item.item}}" wx:for-item="swiperItem" wx:for-index="swiperIndex" bindtap="tapGo"
+                wx:key="unique" data-block-index="{{swiperIndex}}"
+                data-type="advertisement"
+                bindtap="tapGo"
+                data-track-id="index_click_banner"
+                data-track-data="{{ swiperItem._trackDataSet }}"
+                >
+                <jump-other-mini jumper="{{swiperItem.jumper}}">
+                    <view class="u-ad-navigator">
+                        <image lazy-load src="{{swiperItem.imgFullPath}}" class="u-swiper-img" mode="widthFix"></image>
+                    </view>
+                </jump-other-mini>
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 滑动运营位（图片） -->
+    <view class="u-operation-slider u-template-{{item.template}}" wx:if="{{section === 'slider' && item.sliderType === 'picture' && item.template !== 'swap'}}">
+        <!--<image lazy-load class="opera-title" wx:if="{{item.item.sliderTitlePictureUrl}}" src="{{item.item.sliderTitlePictureUrl}}"></image>-->
+        <scroll-view scroll-x="{{true}}" class="u-operation-slider-scroll">
+            <view class="u-operation-slider-content">
+                <view wx:for="{{item.contents}}"
+                    wx:for-item="cell"
+                    wx:for-index="cellIndex"
+                    wx:key="index"
+                    bindtap="tapGo"
+                    data-id="{{channelId}}"
+                    data-index="{{index}}"
+                    data-block-index="{{cellIndex}}"
+                    data-type="slider"
+                    data-track-id="index_click_slide"
+                    class="opera-cell expose-item"
+                    data-track-data="{{ cell._trackDataSet }}"
+                    data-expose-data="{{ cell._exposeDataSet }}"
+                    data-expose-row="{{ lightartRow }}"
+                    data-expose-col="{{ cellIndex + 1 }}"
+                    >
+                    <image lazy-load class="u-operation-image" src="{{cell.pic}}"></image>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</template>

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "lightart-component": "./lightart-component",
+    "native-component": "../native-component/native-component"
+  }
+}

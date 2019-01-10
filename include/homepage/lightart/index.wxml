@@ -1,0 +1,12 @@
+<swiper class="u-brand-list" style="height: {{win_height}}px;" bindchange="handleSwiperChange" current="{{selectedChannelIndexForSwiper}}">
+    <swiper-item wx:for="{{allChannelList}}" wx:for-item="channelItem" wx:for-index="idx" wx:key="id">
+        <!--<scroll-view scroll-y="true" class="u-brand-list-scroll {{selectedChannelIndex === idx ? 'expose-content': ''}}"-->
+            <!--scroll-into-view="{{childViewId[channelItem.channel_code]}}" bindscrolltolower="handleScrollLoad"-->
+            <!--lower-threshold="1500" bindscroll="handleScroll">-->
+        <view class="u-brand-list-scroll {{selectedChannelIndex === idx ? 'expose-content': ''}}">
+            <view class="u-brand-list-placeholder" id="scroll_top_{{channelItem.channel_code}}"></view>
+            <lightart-root life-hook-type="{{lifeHookType}}" wx:if="{{activeChannelIdMap[channelItem.channel_code]}}" lightart-id="{{lightartIds[channelItem.channel_code]}}"></lightart-root>
+        </view>
+        <!--</scroll-view>-->
+    </swiper-item>
+</swiper>

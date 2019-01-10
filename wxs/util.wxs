@@ -1,0 +1,43 @@
+/* eslint-disable no-var */
+
+/**
+ * 模板wxs工具集合
+ * 用法：
+ * 1.引用wxs <wxs module ="util" src="../../wxs/util.wxs"></wxs>
+ * 2.使用对应模板工具 {{util.formatNumberTo(amountInfo.fav,2)}}
+ *
+ * formatNumberTo 格式化指定位数小数
+ * cutter 截断超长内容
+ *
+ * 官方文档：https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxs/index.html
+ * 注意事项：
+ * 只能使用 var 来定义变量，表现形式和 javascript 一样，会有变量提升。
+ * 若在模块中想要引用其他模块，只能通过 require 实现。
+ * 不能使用 new Date() 应该使用 getDate()
+ */
+module.exports = {
+    /**
+     * 格式化指定位数小数
+     *
+     * @param {string} s 源数据
+     * @param {number} num 小数位数
+     * @returns {string} 格式化后
+     */
+    formatNumberTo: function (s, num) {
+        return parseFloat(s).toFixed(num);
+    },
+    /**
+     * 截断超长内容
+     *
+     * @param {string} val 内容
+     * @param {number} max 最大字数
+     * @returns {string} 截断后的内容
+     */
+    cutter: function(val, max) {
+        if (val.length > max) {
+            return val.substring(0, max - 1) + '...';
+        } else {
+            return val;
+        }
+    }
+};

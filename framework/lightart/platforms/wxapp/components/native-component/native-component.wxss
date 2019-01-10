@@ -1,0 +1,232 @@
+/* @import '/base/css/operate-countdown.wxss'; */
+
+.clearfix {
+    clear: both;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.u-operation-item {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.u-operation-block {
+    display: inline-block;
+}
+.u-operation-inner {
+    float: left;
+    position: relative;
+}
+.u-operation-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.opera-cell {
+    display: inline-block;
+}
+
+.u-operation-swiper {
+    position: relative;
+}
+.u-swiper-expose-placeholder {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    left: 50%;
+    top: 50%;
+    z-index: -1;
+}
+.u-swiper-img {
+    width: 100%;
+}
+
+.u-operation-slider {
+    width: 750rpx;
+    white-space: nowrap;
+    height: 100%;
+    /* overflow-x:scroll; */
+    -webkit-overflow-scrolling: touch;
+    /* overflow-y:hidden; */
+}
+/** 切图小图3.5坑 */
+.u-template-small .u-operation-slider-scroll {
+    height: 272rpx;
+}
+.u-template-small .opera-cell {
+    width: 198rpx;
+    height: 272rpx;
+}
+/** 切图大图1.5坑 */
+.u-template-big .u-operation-slider-scroll {
+    height: 252rpx;
+}
+.u-template-big .opera-cell {
+    width: 448rpx;
+    height: 252rpx;
+}
+/** 切图中图2.5坑 */
+.u-template-medium .u-operation-slider-scroll {
+    height: 378rpx;
+}
+.u-template-medium .opera-cell {
+    width: 282rpx;
+    height: 378rpx;
+}
+/** 切图小矮图3.5坑 */
+.u-template-small_lower .u-operation-slider-scroll {
+    height: 200rpx;
+}
+
+.u-template-small_lower .opera-cell {
+    width: 198rpx;
+    height: 200rpx;
+}
+
+.u-template-medium_lower .opera-cell {
+    width: 282rpx;
+    height: 320rpx;
+}
+.u-template-medium_lower .u-operation-slider-scroll {
+    height: 320rpx;
+}
+/** 切图超大图1.5坑 */
+.u-template-large .opera-title {
+    background-color: #fff;
+}
+.u-template-large .u-operation-slider-scroll {
+    height: 372rpx;
+}
+.u-template-large .opera-cell {
+    width: 508rpx;
+    height: 372rpx;
+}
+.u-coupon-status {
+    position: absolute;
+    width: 110rpx;
+    height: 106rpx;
+    right: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+}
+.u-coupon-status-got {
+    display: block;
+    background-image: url(https://weixin-static.vip.com/uploadfiles/wx-small/images/coupon-got.png);
+}
+.u-coupon-status-empty {
+    display: block;
+    background-image: url(https://weixin-static.vip.com/uploadfiles/wx-small/images/coupon-none.png);
+}
+
+.u-operation-brand,
+.u-operation-mst {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 0 0 24rpx 0;
+    position: relative;
+}
+
+.u-operation-brand__image {
+    width: 702rpx;
+    height: 337rpx;
+    border-radius: 18rpx;
+}
+
+.u-operation-brand .u-operation-i {
+    border-radius: 18rpx;
+    height: 469rpx;
+    background-color: #fff;
+}
+.u-operation-img-bg {
+    background-image: url("http://b.appsimg.com/upload/momin/2018/07/11/36/1531301431219.png");
+    border-top-left-radius: 18rpx;
+    border-top-right-radius: 18rpx;
+    height: 337rpx;
+    background-color: #fff;
+    background-position: center;
+}
+.u-operation-mst .u-operation-img-bg {
+    width: 702rpx;
+    border-radius: 18rpx;
+}
+
+.u-operation-brand .u-operation-brand__image {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    /* border: 1rpx solid #e8e9eb; */
+}
+
+.u-brand-corner-image{
+    width: 70rpx;
+    height: 70rpx;
+    position: absolute;
+    left: 35rpx;
+    top: 0;
+}
+
+.u-brand-corner-image.b-activity{
+    width: 170rpx;
+    height: 70rpx;
+}
+
+.u-operation-brand .u-brand-msg {
+    background-color: #fff;
+    position: relative;
+    width: 702rpx;
+}
+.u-brand-name {
+    font-size: 30rpx;
+    color: #222;
+    height: 30rpx;
+    line-height: 30rpx;
+    padding-top: 26rpx;
+    padding-left: 20rpx;
+    padding-bottom: 10rpx;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+.u-brand-time {
+    font-size: 24rpx;
+    color: #98989f;
+    position: absolute;
+    top: 28rpx;
+    right: 20rpx;
+    line-height: 1;
+}
+
+.u-brand-pms {
+    font-size: 24rpx;
+    line-height: 24rpx;
+    color: #5771a9;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    padding-top: 10rpx;
+    display: flex;
+}
+.u-brand-pms .t-discount {
+    color: #de3d96;
+}
+.u-brand-pms .no-discount,
+.u-brand-pms .t-pms {
+    color: #585c64;
+}
+.u-brand-pms .t-pms {
+    padding-left: 20rpx;
+    display: inline-block;
+    width: 540rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

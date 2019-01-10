@@ -1,0 +1,6 @@
+{
+    "title": "唯品会",
+    "usingComponents": {
+        "lightart-root": "/framework/lightart/platforms/wxapp/components/lightart-root/lightart-root"
+    }
+}

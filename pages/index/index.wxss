@@ -1,0 +1,563 @@
+
+page {
+    font-size: 0;
+}
+
+.m-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    z-index: 9;
+}
+
+
+/* -------  搜索栏  -------*/
+.u-search-classify {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    padding: 12rpx 20rpx 12rpx 30rpx;
+    background: #ffffff;
+    height: 88rpx;
+    box-sizing: border-box;
+}
+.u-search-classify .navigator-hover {
+    background-color: #f3f4f5;
+    opacity: 1;
+}
+.u-search {
+    position: relative;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    -webkit-align-items: center;
+    padding-left: 16rpx;
+    margin-right: 10rpx;
+    width: 620rpx;
+    height: 64rpx;
+    background: #e8e8e8;
+    text-align: center;
+    border-radius: 10rpx;
+    box-sizing: border-box;
+}
+.u-search.hide-category{
+    width: 100%;
+}
+.u-search text {
+    margin-left: 16rpx;
+    font-size: 26rpx;
+    color: #aaaaaa;
+}
+.u-classify {
+    width: 64rpx;
+    height: 64rpx;
+    padding-top: 40rpx;
+    background-image: url(https://weixin-static.vip.com/uploadfiles/wx-small/images/search_icon_banding.png?v=20180306);
+    background-repeat: no-repeat;
+    background-size: 40rpx auto;
+    background-position: 14rpx 4rpx;
+    font-size: 22rpx;
+    color: #999999;
+    text-align: center;
+}
+/* -------  搜索栏end  -------*/
+
+/* -------  频道列表  -------*/
+.p-index .u-navigate-bar {
+    height: 64rpx;
+    font-size: 28rpx;
+    padding-right: 80rpx;
+    box-sizing: border-box;
+    position: relative;
+    border-bottom: 1rpx solid rgba(102, 102, 102, .2);
+}
+.p-index .u-channel-list-wrapper{
+    position: relative;
+}
+.p-index .u-navigate-list {
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    display: flex;
+    align-items: center;
+    height: 64rpx;
+    white-space: nowrap;
+    width: 800rpx;
+    /* overflow-x: scroll;
+    overflow-y:hidden; */
+    /*overflow: hidden;*/
+    position: relative;
+    box-sizing: border-box;
+}
+.p-index .u-channel-list-wrapper .btn-show-expand{
+    position: absolute;
+    /* background-color: #fff; */
+    background: url("https://weixin-static.vip.com/uploadfiles/wx-small/images/topbar_downarrow.png?v=20180306") no-repeat;
+    background-size: 100%;
+    width: 64rpx;
+    height: 64rpx;
+    top: 0;
+    right: 10rpx;
+    box-sizing: border-box;
+    transition: transform .3s;
+    -webkit-transition: transform .3s;
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+}
+
+.p-index .u-channel-list-wrapper .btn-show-expand.hide{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+
+.p-index .u-navigate-layer {
+    position: absolute;
+    top: 0;
+    right: 60rpx;
+    width: 64rpx;
+    height: 62rpx;
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 60%,
+        rgba(255, 255, 255, 1) 80%,
+        rgba(255, 255, 255, 1) 100%);
+}
+
+.p-index .u-navigate-list-expand{
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.p-index .u-navigate-list-expand .title{
+    /* height: 64rpx; */
+    font-size: 26rpx;
+    color: #98989F;
+    line-height: 26rpx;
+    position: relative;
+    /* padding-left: 30rpx; */
+    background-color: #fff;
+    box-sizing: border-box;
+    /* border-bottom: 2rpx #E7E7E7 solid; */
+    padding: 20rpx 0 30rpx 30rpx;
+}
+.u-navigate-list-expand .sub-title{
+    height: 80rpx;
+    font-size: 26rpx;
+    color: #98989F;
+    line-height: 80rpx;
+    padding-left: 30rpx;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.p-index .u-navigate-list-expand-wrapper{
+    position: fixed;
+    opacity: 0.3;
+    background: #222222;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    z-index: 5;
+}
+.p-index .u-navigate-list-expanded{
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    background-color: #fff;
+    opacity: 0;
+}
+.p-index .u-navigate-item-expanded{
+    float: left;
+    width: 25%;
+    height: 150rpx;
+    border-bottom: 1px #E7E7E7 solid;
+    border-right: 1px #E7E7E7 solid;
+    border-collapse:collapse;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.p-index .u-navigate-item-expanded:nth-child(4n){
+    border-right: 0;
+}
+.p-index .u-navigate-item-expanded .item-icon{
+    position: absolute;
+    width: 40rpx;
+    height: 40rpx;
+    left: 50%;
+    transform: translateX(-20rpx);
+    -webkit-transform: translateX(-20rpx);
+    top: 34rpx;
+}
+.p-index .u-navigate-item-expanded .item-title{
+    position: absolute;
+    font-size: 24rpx;
+    color: #585C64;
+    line-height: 24rpx;
+    top: 94rpx;
+    width: 100%;
+    text-align: center;
+}
+.p-index .u-navigate-item-expanded .item-title.selected{
+    color: #E43494;
+}
+.p-index .u-navigate-item {
+    -webkit-flex: none;
+    flex: none;
+    height: 64rpx;
+    padding-left: 25rpx;
+    padding-right: 15rpx;
+    white-space: nowrap;
+    color: #585C64;
+    text-align: center;
+}
+.p-index .u-navigate-title {
+    line-height: 64rpx;
+}
+.p-index .u-navigate-title.u-navigate-selected {
+    position: relative;
+    color: #E43494;
+}
+
+.p-index .u-navigate-item .u-act-img {
+    width: 120rpx;
+    height: 60rpx;
+    /* padding-top: 10rpx; */
+}
+
+.p-index .u-navigate-item .u-navigate-border-selected {
+    position: absolute;
+    bottom: 6rpx;
+    left: 0;
+    width: 50%;
+    height: 4rpx;
+    margin: 0 25%;
+    border-radius: 2rpx;
+    background: #E43494;
+}
+
+.p-index .u-navigate-arrow-down{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.u-navigate-drawmenu{
+    margin: 0 30rpx;
+}
+
+.u-navigate-drawmenuitem{
+    float: left;
+    width: 25%;
+    margin-bottom: 20rpx;
+    margin-top: 5rpx;
+}
+.u-navigate-drawmenuitem .item-title.selected{
+    color: #DE3D96;
+}
+
+.u-navigate-drawmenuitem .item-title{
+    width: 85%;
+    margin: 0 auto;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    border-radius: 40rpx;
+    font-size: 22rpx;
+    color: #585c64;
+    border: 2rpx solid #E7E7E7;
+}
+.u-navigate-drawmenuitem .special-title {
+   color: #0069AC;
+}
+
+/* -------  频道列表end  -------*/
+
+/* -------  抱团购  -------*/
+.m-groupon{
+    position: relative;
+    height: 520rpx;
+    width: 100%;
+    /*margin-top: 20rpx;*/
+    margin-bottom: 20rpx;
+    padding-top: 26rpx;
+    background-color: #fff;
+    background-image: url("https://weixin-static.vip.com/uploadfiles/wx-small/images/groupon_bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.m-groupon .head-title{
+    width: 134rpx;
+    height: 32rpx;
+    margin-left: 36rpx;
+    background-image: url(https://weixin-static.vip.com/uploadfiles/wx-small/images/groupon_title.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.m-groupon .head-desc{
+    margin-top: 12rpx;
+    margin-left: 36rpx;
+    font-size: 24rpx;
+    font-weight: bold;
+    color: #ffedd6;
+    letter-spacing: 0;
+    line-height: 24rpx;
+    text-align: left;
+}
+
+.m-groupon .head-more{
+    position: absolute;
+    top: 32rpx;
+    right: 30rpx;
+    width: 140rpx;
+    height: 50rpx;
+    background-image: url(https://weixin-static.vip.com/uploadfiles/wx-small/images/groupon_see_more.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.m-groupon .u-groupon-list {
+    white-space: nowrap;
+    height: 416rpx;
+}
+.m-groupon .u-groupon-item {
+    display: inline-block;
+    width: 240rpx;
+    height: 396rpx;
+    padding-left: 20rpx;
+    vertical-align: top;
+}
+.m-groupon .u-groupon-item:last-child {
+    padding-right: 20rpx;
+}
+
+.m-groupon .u-groupon-list .image {
+    position: relative;
+    width: 240rpx;
+    height: 308rpx;
+    box-sizing: border-box;
+    border: 1px #F3F4F5 solid;
+    background: #ffffff;
+}
+
+.m-groupon .u-groupon-list .flag {
+    position: absolute;
+    bottom: 0;
+    width: 236rpx;
+    height: 60rpx;
+    background-color: rgba(255, 255, 255, .8);
+    border: 0;
+    box-sizing: border-box;
+}
+.m-groupon .u-groupon-list .flag .logo {
+    height: 60rpx;
+    width: 236rpx;
+}
+.m-groupon .u-groupon-bar {
+    margin-top: 24rpx;
+    height: 420rpx;
+}
+.m-groupon .u-groupon-list .product-img {
+    height: 100%;
+    width: 100%;
+}
+.m-groupon .groupon-item-bottom {
+    padding-top: 20rpx;
+    text-align: center;
+}
+.m-groupon .groupon-item-bottom .groupon-item-title{
+    height: 30rpx;
+    line-height: 1;
+    margin-bottom: 10rpx;
+}
+.m-groupon .u-groupon-list .u-groupon-price {
+    position: relative;
+    top: 2rpx;
+    display: inline-block;
+    margin-left: 8rpx;
+    vertical-align: top;
+    font-size: 28rpx;
+    font-weight: blod;
+    color: #DE3D96;
+}
+.m-groupon .groupon-item-bottom .vipshop-price {
+    font-size: 24rpx;
+    line-height: 28rpx;
+    color: #98989F;
+    text-decoration: line-through;
+}
+.m-groupon .u-groupon-list .pink {
+    display: inline-block;
+    vertical-align: top;
+    padding: 4rpx;
+    height: 30rpx;
+    font-size: 20rpx;
+    color: #DE3D96;
+    border: solid 1rpx #fad8eb;
+    box-sizing: border-box;
+}
+.m-groupon .u-groupon-list.see-more{
+    position: relative;
+}
+.m-groupon .u-groupon-list.see-more .bg-box {
+    width: 240rpx;
+    height: 308rpx;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px #F3F4F5 solid;
+}
+.m-groupon .u-groupon-list.see-more .line {
+    position: absolute;
+    left: 88rpx;
+    top: 152rpx;
+    height: 1rpx;
+    width: 106rpx;
+    background-color: #585C64;
+}
+.m-groupon .u-groupon-list.see-more .title{
+    position: absolute;
+    top: 118rpx;
+    left: 88rpx;
+    font-size: 24rpx;
+    color: #D34BA8;
+    letter-spacing: 5rpx;
+    line-height: 28rpx;
+}
+.m-groupon .u-groupon-list.see-more .english{
+    position: absolute;
+    top: 158rpx;
+    left: 84rpx;
+    font-size: 24rpx;
+    color: #585C64;
+    letter-spacing: 1rpx;
+    line-height: 34rpx;
+}
+/* -------  抱团购end  -------*/
+
+/* -------  热销排行榜 领券中心  -------*/
+.u-operate-entrance-wrap{
+    background-color: #f3f4f5;
+    padding-bottom: 20rpx;
+}
+.u-operate-entrance{
+    height: 160rpx;
+    background-color: #fff;
+}
+.u-operate-entrance .operate-item{
+    float: left;
+    width: 50%;
+    height: 160rpx;
+    position: relative;
+    box-sizing: border-box;
+}
+.u-operate-entrance .operate-item .operate-item-title{
+    position: absolute;
+    top: 40rpx;
+    left: 30rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+}
+.u-operate-entrance .operate-item .operate-item-desc{
+    position: absolute;
+    top: 86rpx;
+    left: 30rpx;
+    line-height: 34rpx;
+    font-size: 24rpx;
+    color: #98989F;
+}
+.u-operate-entrance .operate-item .operate-item-img{
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    width: 112rpx;
+    height: 120rpx;
+}
+.u-operate-entrance .operate-item .operate-item-img image{
+    width: 100%;
+    height: 100%;
+}
+.u-operate-entrance .operate-item .operate-item-brand-img{
+    position: absolute;
+    right: 30rpx;
+    top: 24rpx;
+    width: 92rpx;
+    height: 46rpx;
+}
+.u-operate-entrance .operate-item .operate-item-brand-img image{
+    width: 100%;
+    height: 100%;
+}
+.u-operate-entrance .operate-item .operate-item-brand-coupon{
+    position: absolute;
+    background-image: url(https://weixin-static.vip.com/uploadfiles/wx-small/images/coupon_center_bg.png?v=20171107);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 92rpx;
+    height: 52rpx;
+    right: 30rpx;
+    top: 78rpx;
+    color: #fff;
+    text-align: center;
+    font-size: 32rpx;
+    line-height: 52rpx;
+}
+.u-operate-entrance .operate-item .operate-item-brand-coupon .unit{
+    font-size: 20rpx;
+}
+.u-operate-entrance .operate-item+.operate-item{
+    border-left: 2rpx #F3F4F5 solid;
+}
+
+/* -------  热销排行榜 领券中心  -------*/
+
+
+/* -------  弹窗广告位 ------- */
+.ad-popup .ad-popup-wrapper{
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.ad-popup .wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.7);
+}
+.ad-popup .ad-image-content{
+    z-index: 20;
+    position: absolute;
+    bottom: 267rpx;
+    left: 95rpx;
+    width: 560rpx;
+    height: 800rpx;
+}
+.ad-popup .ad-image{
+    width: 100%;
+    height: 100%;
+}
+.ad-popup .ad-close-image{
+    position: absolute;
+    width: 60rpx;
+    height: 60rpx;
+    bottom: -116rpx;
+    left: 50%;
+    margin-left: -30rpx;
+}
+.ad-popup .ad-close-line{
+    width: 0;
+    bottom: -56rpx;
+    height: 56rpx;
+    left: 50%;
+    border-right: 2rpx dashed #fcfcfc;
+    margin-left: -1rpx;
+    position: absolute;
+}

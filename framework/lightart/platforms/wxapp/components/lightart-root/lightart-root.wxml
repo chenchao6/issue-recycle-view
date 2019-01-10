@@ -1,0 +1,91 @@
+<view
+    class="{{node.classNames}}{{node.isRoot?' la-root':''}}{{exposure.className}}"
+    style="{{node.styles}};{{node.sizeStyles}};"
+    catchtap="onTap"
+>
+    <block wx:if="{{node.dt === 'section_list'}}">
+        <recycle-view height="{{scrollHeight}}" scroll-with-animation="{{true}}"
+            scroll-to-index="{{scrollToIndex}}" batch="{{batchSetRecycleData}}"
+
+            bindscrolltolower="handleScrollLoad"
+            id="recycleId{{lightartId}}">
+            <block wx:if="{{lightartId == 1}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize1,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList1,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                <view slot="after" style="height:50px;">
+                    <view class="la-footer">{{node._isLoading ? '努力加载中' : node._isLast ? '———— 没有更多了 ———': ''}}</view>
+                </view>
+            </block>
+            <block wx:if="{{lightartId == 2}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize2,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList2,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+
+            </block>
+            <block wx:if="{{lightartId == 3}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize3,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList3,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+
+            </block>
+            <block wx:if="{{lightartId == 4}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize4,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList4,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+
+            </block>
+            <block wx:if="{{lightartId == 5}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize5,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList5,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+
+            </block>
+            <block wx:if="{{lightartId == 6}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize6,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList6,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+
+            </block>
+            <block wx:if="{{lightartId == 7}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize7,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList7,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+
+            </block>
+            <block wx:if="{{lightartId == 8}}">
+                <view slot="itemsize">
+                    <template is="recycleItem" data="{{section: section, recycleList: recycleListItemSize8,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+                </view>
+                <template is="recycleItem" data="{{section: section, recycleList: recycleList8,lightartId:lightartId,lifeHookType:lifeHookType,windowWidth:windowWidth}}"></template>
+
+            </block>
+        </recycle-view>
+
+    </block>
+    <block wx:else>
+        <lightart-component lightart-id="{{lightartId}}" life-hook-type="{{lifeHookType}}" node="{{node}}">
+        </lightart-component>
+    </block>
+
+</view>
+
+<template name="recycleItem">
+    <recycle-item
+        wx:for="{{recycleList}}"
+        wx:for-item="section"
+        wx:for-index="sectionIndex"
+        wx:key="index"
+        style="width:{{windowWidth}}px;"
+    >
+        <import src="../tmpl/section.wxml" />
+        <template is="sectionTmpl" data="{{section:section,sectionIndex:sectionIndex,lightartId:lightartId,lifeHookType:lifeHookType}}" />
+    </recycle-item>
+</template>

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "lightart-component": "../lightart-component/lightart-component",
+      "native-component": "../native-component/native-component",
+      "recycle-view": "../recycle-view/recycle-view",
+      "recycle-item": "../recycle-view/recycle-item"
+  }
+}

@@ -1,0 +1,43 @@
+<template name="sectionTmpl">
+    <view class="la-section la-component recycle-itemsize" data-index="{{section.component_id}}">
+        <lightart-component
+
+            wx:if="{{section.header}}"
+            class="la-section-header"
+            lightart-id="{{lightartId}}"
+            node="{{section.header}}"
+            style="{{section.header.sizeStyles}};{{section.header.posStyles}};{{section.header.componentSizeStyles}}"
+        >
+        </lightart-component>
+        <view class="la-section-wrap la-component"
+              style="{{node.insetStyles || section.insetStyles}}"
+        >
+            <block
+                wx:for="{{section.children}}"
+                wx:for-item="col"
+                wx:for-index="colIndex"
+                wx:key="index"
+            >
+                <view class="la-section-col">
+                    <lightart-component
+                        class="la-child"
+                        wx:for="{{col}}"
+                        wx:for-index="childIndex"
+                        wx:key="id"
+                        lightart-id="{{lightartId}}"
+                        lightartRow="{{sectionIndex+1}}"
+                        node="{{item}}"
+                        style="{{childIndex ? section.hGapStyles || node.hGapStyles : ''}};{{item.sizeStyles}};{{item.posStyles}};{{item.componentSizeStyles}}"
+                    ></lightart-component>
+                </view>
+                <view
+                    wx:if="{{colIndex < section.children.length - 1}}"
+                    class="la-section-col-space"
+                    style="{{section.vGapStyles || node.vGapStyles}}"
+                ></view>
+            </block>
+        </view>
+    </view>
+
+</template>
+
